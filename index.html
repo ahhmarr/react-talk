@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello react</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props){
+                super(props)
+                this.state = {
+                    counter : 0
+                }
+            }
+            count(){
+                this.setState({
+                    counter : this.state.counter+1
+                })
+            }
+            render() {
+                return (
+                <div onClick={this.count.bind(this)}>
+                    {this.state.counter}
+                </div>
+                )
+            }
+        }
+        ReactDOM.render(<App/>,document.querySelector('#app'));
+    </script>
+</body>
+
+</html>
