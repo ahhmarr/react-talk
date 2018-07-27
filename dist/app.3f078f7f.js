@@ -19747,7 +19747,78 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"src/components/Post.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"../node_modules/react-dom/cjs/react-dom.development.js"}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+  newLink.onload = function () {
+    link.remove();
+  };
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/components/Post.css":[function(require,module,exports) {
+
+var reloadCSS = require('_css_loader');
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+module.exports = {
+        "title": "Post_title_35H1n",
+        "body": "Post_body_2kL7B",
+        "ul": "Post_ul_2Npdv"
+};
+},{"_css_loader":"../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Post.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19758,37 +19829,33 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Post = require("./Post.css");
+
+var _Post2 = _interopRequireDefault(_Post);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var style = {
-  title: {
-    fontWeight: "bold"
-  },
-  body: {
-    fontSize: "18px"
-  }
-};
 var Post = function Post(props) {
   return _react2.default.createElement(
     "ul",
-    null,
+    { className: _Post2.default.ul },
     props.posts.map(function (post, index) {
       return _react2.default.createElement(
         "li",
-        {
+        { key: index + 1,
           onClick: function onClick() {
             props.deleteHandler(index);
           }
         },
         _react2.default.createElement(
           "div",
-          { className: "title", style: style.title },
+          { className: _Post2.default.title },
           post.title,
           " -"
         ),
         _react2.default.createElement(
           "div",
-          { className: "body", style: style.body },
+          { className: _Post2.default.body },
           post.body
         )
       );
@@ -19796,7 +19863,7 @@ var Post = function Post(props) {
   );
 };
 exports.default = Post;
-},{"react":"../node_modules/react/index.js"}],"src/containers/PostsContainer.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./Post.css":"src/components/Post.css"}],"src/containers/PostsContainer.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -19953,7 +20020,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59633' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '64821' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

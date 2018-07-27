@@ -1,26 +1,19 @@
 import React from "react";
-const style = {
-  title: {
-    fontWeight: "bold"
-  },
-  body: {
-    fontSize: "18px"
-  }
-};
+import css from './Post.css';
 const Post = props => {
   return (
-    <ul>
+    <ul className={css.ul}>
       {props.posts.map((post, index) => {
         return (
-          <li
+          <li key={index+1}
             onClick={() => {
               props.deleteHandler(index);
             }}
           >
-            <div className="title" style={style.title}>
+            <div className={css.title} >
               {post.title} -
             </div>
-            <div className="body" style={style.body}>
+            <div className={css.body}>
               {post.body}
             </div>
           </li>
