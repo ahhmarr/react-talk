@@ -14,28 +14,78 @@
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
     <script type="text/babel">
-        class App extends React.Component {
-            constructor(props){
-                super(props)
-                this.state = {
-                    counter : 0
-                }
-            }
-            count(){
-                this.setState({
-                    counter : this.state.counter+1
-                })
-            }
-            render() {
-                return (
-                <div onClick={this.count.bind(this)}>
-                    {this.state.counter}
-                </div>
-                )
-            }
+class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            title : 'some title'
         }
-        ReactDOM.render(<App/>,document.querySelector('#app'));
+    }
+    changeTitle(){
+        this.setState({
+            title : Math.random() + 'changed the'
+        })
+    }
+    render() {
+        return (
+        <div className="main">
+            <Header clickMethod={this.changeTitle.bind(this)} title={this.state.title} order="25"/>
+            <Footer />
+        </div>
+        )
+    }
+}
+class Header extends React.Component {
+    runParentMethod(){
+        this.props.clickMethod();
+    }
+    render() {
+        return (
+        <header onClick={this.runParentMethod.bind(this)}>
+         {this.props.order}
+            <Menu title={this.props.title} />
+        </header>
+        )
+    }
+}
+class Footer extends React.Component {
+    render() {
+        return (
+        <footer>
+            copyright Bla!!
+        </footer>
+        )
+    }
+}
+class Menu extends React.Component {
+    render() {
+        return (
+        <nav>
+            <h2>{this.props.title}</h2>
+            <li><a href="/home">Home</a> </li>
+            <li><a href="/about">About</a> </li>
+            <li><a href="/contact">Contact</a> </li>
+        </nav>
+        )
+    }
+}
+ReactDOM.render(<App/>,document.querySelector('#app'));
     </script>
+    <style>
+        body,
+        html,
+        #app {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .card {
+            height: 60%;
+            background-color: yellowgreen;
+        }
+    </style>
 </body>
 
 </html>
