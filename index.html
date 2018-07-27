@@ -53,17 +53,21 @@ class Post extends React.Component {
         this.props.removehandler(index);
     }
     render() {
+        let list='no posts available';
+        if(this.props.posts.length){
+            list = this.props.posts.map((post,index)=>{
+                    return (
+                        <li key={index+1} onClick={this.deleteEntry.bind(this,index)}>
+                            <div style={{fontWeight:'bold'}}>{post.title}</div>
+                            <div>{post.body}</div>
+                        </li>
+                    )
+                })
+        }
         return (
         <section>
         <ul>
-           {this.props.posts.map((post,index)=>{
-               return (
-                   <li key={index+1} onClick={this.deleteEntry.bind(this,index)}>
-                    <div style={{fontWeight:'bold'}}>{post.title}</div>
-                    <div>{post.body}</div>
-                   </li>
-               )
-           })}
+           {list}
         </ul>
         </section>
         )
