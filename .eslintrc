@@ -1,0 +1,38 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "module",
+        "jsx": true
+    },
+    "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "modules": true,
+        "spread": true,
+        "restParams": true
+    },
+    "env": {
+        "mocha": true,
+        "node": true
+    },
+    "globals": {
+        "browser": true,
+        "API_URL": true
+    },
+    "rules": {
+        "key-spacing": [
+            2,
+            {
+                "align": "colon",
+                "beforeColon": false,
+                "afterColon": true
+            }
+        ]
+    },
+    "plugins": [
+        "react"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/all"
+    ]
+}
