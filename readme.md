@@ -1,6 +1,6 @@
-#Simple React Boilerplate
+# Simple React Boilerplate
 
-###Installation
+### Installation
 
 - clone the repo
 - run `npm install`
