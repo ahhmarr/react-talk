@@ -1,3 +1,4 @@
+slides : https://docs.google.com/presentation/d/1rSJGKb85qprUUuI7KgZjPEEWzR2LbTepzAB4eMui_J8/edit?usp=sharing
 # Simple React Boilerplate
 
 ### Installation
